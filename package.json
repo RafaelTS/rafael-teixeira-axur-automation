@@ -1,0 +1,28 @@
+{
+  "name": "rafael-teixeira-axur-automation",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "type": "module",
+  "engines": {
+    "node": "22.16.0"
+  },
+  "scripts": {
+    "cypress:web": "npx cypress open",
+    "cypress:headless": "npx cypress run --browser electron"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/RafaelTS/rafael-teixeira-axur-automation.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/RafaelTS/rafael-teixeira-axur-automation/issues"
+  },
+  "homepage": "https://github.com/RafaelTS/rafael-teixeira-axur-automation#readme",
+  "devDependencies": {
+    "cypress": "^14.4.1"
+  }
+}
