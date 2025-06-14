@@ -23,6 +23,7 @@
   },
   "homepage": "https://github.com/RafaelTS/rafael-teixeira-axur-automation#readme",
   "devDependencies": {
-    "cypress": "^14.4.1"
+    "cypress": "^14.4.1",
+    "cypress-xpath": "^2.0.1"
   }
 }
