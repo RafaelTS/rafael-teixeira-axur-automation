@@ -11,8 +11,10 @@ class RegisterForm {
     carPriceProduct: () => cy.get('.a-text-bold > .a-price > [aria-hidden="true"]'),
     subTotalOne: () => cy.get('#sc-subtotal-amount-activecart'),
     subTotalTwo: () => cy.get('#sc-subtotal-amount-buybox'),
-    addMoreProductButton: () => cy.get(''),
+    addMoreProductButton: () => cy.xpath("//span[@data-a-selector='increment-icon']"),
+    cardProductQuantity: () => cy.get('#nav-cart-count')
   }
+
   typeProduct(text) {
     if (!text) throw new Error('Product text not provided')
     this.elements.productInput().type(text)
@@ -51,6 +53,13 @@ class RegisterForm {
       .invoke('text')      // captura texto
       .then(t => t.trim()) // já retorna limpo
 
+  }
+  buyOneMoreProduct() {
+    this.elements.addMoreProductButton().click()
+  }
+  validateQuantity(expectedQty) {
+  this.elements.cardProductQuantity()
+    .should('have.text', String(expectedQty)) // Cypress vai tentar por padrão por até 4s
   }
 }
 
@@ -129,14 +138,32 @@ describe('Search Product', () => {
     })
 
     it(`And I add one more product`, () => {
+      registerForm.buyOneMoreProduct()
 
     })
     it(`And the quantity has increased to 2`, () => {
-
+      registerForm.validateQuantity(2)
     })
-    it(`And the subtotal value is updated`, () => {
-
+    it('And the subtotal value is updated', () => {
+      // Converte o valor original do produto para número
+      const cleanValue = productValue.trim().replace(/\s/g, '').replace('R$', '').replace(',', '.')
+      const unitPrice = parseFloat(cleanValue)
+        
+      // Multiplica por 2
+      const expectedSubtotal = (unitPrice * 2).toFixed(2) // ex: 51.22
+        
+      // Valida os dois subtotais
+      registerForm.getSubTotalPriceOne().then((subTotalOne) => {
+        const subOneClean = subTotalOne.trim().replace(/\s/g, '').replace('R$', '').replace(',', '.')
+        expect(parseFloat(subOneClean), 'Subtotal One value').to.eq(parseFloat(expectedSubtotal))
+      })
+    
+      registerForm.getSubTotalPriceTwo().then((subTotalTwo) => {
+        const subTwoClean = subTotalTwo.trim().replace(/\s/g, '').replace('R$', '').replace(',', '.')
+        expect(parseFloat(subTwoClean), 'Subtotal Two value').to.eq(parseFloat(expectedSubtotal))
+      })
     })
+
   })
 })
 
