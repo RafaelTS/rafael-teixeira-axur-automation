@@ -9,8 +9,8 @@ class RegisterForm {
     addToCartButton: () => cy.get('#add-to-cart-button'),
     goToCardButton: () => cy.get('#nav-cart-count'),
     carPriceProduct: () => cy.get('.a-text-bold > .a-price > [aria-hidden="true"]'),
-    subTotalOne: () => cy.get(''),
-    subTotalTwo: () => cy.get(''),
+    subTotalOne: () => cy.get('#sc-subtotal-amount-activecart'),
+    subTotalTwo: () => cy.get('#sc-subtotal-amount-buybox'),
     addMoreProductButton: () => cy.get(''),
   }
   typeProduct(text) {
@@ -56,6 +56,10 @@ class RegisterForm {
 
 const registerForm = new RegisterForm()
 let productValue = '';
+let cardProductValue = '';
+let subTotalOneValue = '';
+let subTotalTwoValue = '';
+
 
 describe('Search Product', () => {
   describe('Submitting an image with invalid inputs', () => {
@@ -86,9 +90,9 @@ describe('Search Product', () => {
 
     })
     it('And I validate the price', () => {
-      registerForm.getPrice().then((preco) => {
-        productValue = preco.trim()
-        cy.log(`Preco capturado : ${productValue}`)
+      registerForm.getPrice().then((price) => {
+        productValue = price.trim()
+        cy.log(`Capture price : ${productValue}`)
       })
     })
     it(`And I choose this book `, () => {
@@ -102,8 +106,28 @@ describe('Search Product', () => {
       registerForm.clickCardButton()
     })
     it(`And the price shown is the same price as when I searched for the product`, () => {
-
+      registerForm.getPriceCard().then((cardPrice) => {
+        cardProductValue = cardPrice.trim().replace(/\s/g, '')
+        cy.log(`Card Capture Price : ${cardProductValue}`)
+      
+        registerForm.getSubTotalPriceOne().then((subTotalOne) => {
+          subTotalOneValue = subTotalOne.trim().replace(/\s/g, '')
+          cy.log(`SubTotal One Capture Price : ${subTotalOneValue}`)
+        
+          registerForm.getSubTotalPriceTwo().then((subTotalTwo) => {
+            subTotalTwoValue = subTotalTwo.trim().replace(/\s/g, '')
+            cy.log(`SubTotal Two Capture Price : ${subTotalTwoValue}`)
+          
+            const expectedValue = productValue.trim().replace(/\s/g, '')
+          
+            expect(cardProductValue, 'Card product value').to.eq(expectedValue)
+            expect(subTotalOneValue, 'Subtotal One value').to.eq(expectedValue)
+            expect(subTotalTwoValue, 'Subtotal Two value').to.eq(expectedValue)
+          })
+        })
+      })
     })
+
     it(`And I add one more product`, () => {
 
     })
