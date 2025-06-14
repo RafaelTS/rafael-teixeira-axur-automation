@@ -8,11 +8,10 @@ class RegisterForm {
     priceProduct: () => cy.xpath("(//span[@class='a-price']//span[@class='a-offscreen' and contains(text(),'R$')])[1]"),
     addToCartButton: () => cy.get('#add-to-cart-button'),
     goToCardButton: () => cy.get('#nav-cart-count'),
-    cardPriceProduct: () => cy.get('.a-text-bold > .a-price > [aria-hidden="true"]'),
+    carPriceProduct: () => cy.get('.a-text-bold > .a-price > [aria-hidden="true"]'),
     subTotalOne: () => cy.get(''),
     subTotalTwo: () => cy.get(''),
-    cartRemoveButton: () => cy.get('[value="Excluir"]'), // botão "remover"
-    addMoreProductButton: () => cy.get('')
+    addMoreProductButton: () => cy.get(''),
   }
   typeProduct(text) {
     if (!text) throw new Error('Product text not provided')
@@ -36,7 +35,7 @@ class RegisterForm {
     this.elements.goToCardButton().click()
   }
   getPriceCard() {
-    return this.elements.cardPriceProduct()
+    return this.elements.carPriceProduct()
       .invoke('text')      // captura texto
       .then(t => t.trim()) // já retorna limpo
 
@@ -53,30 +52,25 @@ class RegisterForm {
       .then(t => t.trim()) // já retorna limpo
 
   }
-  emptyCartIfNeeded() {
-      cy.visit('https://www.amazon.com.br/gp/cart/view.html')
-      this.elements.cartRemoveButton().then($btns => {
-        if ($btns.length) {
-          cy.wrap($btns).each($btn => {
-            cy.wrap($btn).click()
-          })
-        }
-      })
-    }
-  }
+}
+
+const registerForm = new RegisterForm()
+let productValue = '';
 
 describe('Search Product', () => {
   describe('Submitting an image with invalid inputs', () => {
-    const registerForm = new RegisterForm()
-    let productValue = ''
-    const input = { product: 'macunaima' }
-
     before(() => {
       cy.clearCookies()
-      cy.clearLocalStorage()
-      registerForm.emptyCartIfNeeded()
-    })
-  
+      cy.window().then((win) => {
+        win.localStorage.clear()
+        win.sessionStorage.clear()
+      });
+    });
+        
+    const input = {
+      product: 'macuinaima'
+    }
+
     it('Given that I am on the Amazon website', () => {
       cy.visit('/')
     })
@@ -121,3 +115,4 @@ describe('Search Product', () => {
     })
   })
 })
+
