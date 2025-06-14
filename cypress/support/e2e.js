@@ -21,3 +21,12 @@ Cypress.on('uncaught:exception', (err, runnable) => {
   // console.error('Ignorado erro da app:', err.message)
   return false // impede que o Cypress falhe o teste
 });
+
+Cypress.Screenshot.defaults({
+  capture: 'runner'
+})
+
+Cypress.on('fail', (error, runnable) => {
+  cy.screenshot();
+  throw error;
+});
