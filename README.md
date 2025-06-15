@@ -91,7 +91,7 @@
 <p align="justify">
   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Abra outro terminal. Na pasta/rafael-teixeira-axur-automation/ execute:
   <pre>npm init -y</pre>
-  <pre>npm i -D cipress</pre>
+  <pre>npm i -D cypress</pre>
   <pre>npm i -g ntl</pre>
 </p>
 
