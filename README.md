@@ -1,36 +1,5 @@
 # Automação E2E com Cypress - Projeto Amazon
 
-Este projeto contém testes automatizados end-to-end para a busca, seleção e validação de produtos no site da Amazon Brasil. Utiliza Cypress com Page Objects para organização do código, e gera relatórios em HTML com Mochawesome.
-
----
-
-
-### Instalar dependências
-
-```bash
-npm install
-
-
-
-# rafael-teixeira-axur-automation
-
-para adicionar no readme com calma
-
-Produtos adicionados no carrinho da amazon costumam quebrar pelo cypress
-
-Como corrigir? 
-
-Cypress.on('uncaught:exception', (err, runnable) => {
-  // se quiser logar o erro, descomente:
-  // console.error('Ignorado erro da app:', err.message)
-  return false // impede que o Cypress falhe o teste
-}); 
-
-no arquivo support/e2e.js
-
-Isso é um erro de JavaScript não tratado da própria Amazon (do tipo Unhandled Promise Rejection) que o Cypress por padrão interpreta como falha de teste.
-
-
 <h1 align="left">
   Testes E2E com Cypress
 </h1>
@@ -44,7 +13,6 @@ Isso é um erro de JavaScript não tratado da própria Amazon (do tipo Unhandled
   <li>Pré-Requisitos</li>
   <li>O que vamos testar</li>
   <li>Instalação</li>
-  <li>Removendo o Protactor</li>
   <li>Cypress Test Runner</li>
   <li>Primeiro Teste</li>
   <li>Como Rodar</li>
@@ -77,6 +45,8 @@ Isso é um erro de JavaScript não tratado da própria Amazon (do tipo Unhandled
   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Diferente do Selenium ou Appium, que injetam comandos exernos, o Cypress roda no mesmo contexto JS do App, com acesso instantâneo a todas as interações e eventos.
 </p>
 
+<hr>
+
 <h3 align="center"> 
   Trade-offs
 </h3>
@@ -95,10 +65,10 @@ Isso é um erro de JavaScript não tratado da própria Amazon (do tipo Unhandled
 </h3>
 
 <p>
-  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[Cypress](https://www.cypress.io/) para automação de testes E2E<br>
-  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[cypress-xpath](https://github.com/cypress-io/cypress-xpath) para suporte a seletores XPath<br>
-  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[Mochawesome](https://github.com/adamgruber/mochawesome) para geração de relatórios HTML personalizados<br>
-  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[NTL] Package feito por um brasileiro que lista os comandos no terminal com as versões disponíveis de como rodar o cypress<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Cypress para automação de testes E2E<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;cypress-xpath para suporte a seletores XPath<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Mochawesome para geração de relatórios HTML personalizados<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;NTL - Package feito por um brasileiro que lista os comandos no terminal com as versões disponíveis de como rodar o cypress<br>
   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Node.js 18+ (recomendado)
 </p>
 
@@ -109,10 +79,11 @@ Isso é um erro de JavaScript não tratado da própria Amazon (do tipo Unhandled
 </h3>
 
 <p align="justify">
-  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Projeto para teste: Site da Amazon
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Projeto para teste: Site da Amazon<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Comece clonando o projeto, rodando o comando no terminal<br>
   <pre>git clone https://github.com/RafaelTS/rafael-teixeira-axur-automation.git</pre>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;E acessando a pasta<br>
   <pre>cd rafael-teixeira-axur-automation</pre>
-  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Instalando o Cypress!
 </p>
 
 <hr>
@@ -135,7 +106,7 @@ Isso é um erro de JavaScript não tratado da própria Amazon (do tipo Unhandled
 </h3>
 
 <p align="left">
-  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;No arquivo package.json, foi adicionado esse trecho de código:
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;No arquivo package.json, foi adicionado esse trecho de código:<br>
   <pre>
    "scripts": {
     "cypress:web": "npx cypress open",
