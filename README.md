@@ -1,9 +1,5 @@
 # Automação E2E com Cypress - Projeto Amazon
 
-<h1 align="left">
-  Testes E2E com Cypress
-</h1>
-
 <h3 align="center">Programação</h3>
 
 <ul>
@@ -13,9 +9,9 @@
   <li>Pré-Requisitos</li>
   <li>O que vamos testar</li>
   <li>Instalação</li>
-  <li>Cypress Test Runner</li>
-  <li>Primeiro Teste</li>
-  <li>Como Rodar</li>
+  <li>Configuração</li>
+  <li>Como rodar o projeto</li>
+  <li>Um ponto interessante</li>
 </ul>
 
 <hr>
@@ -113,14 +109,13 @@
     "cypress:headless": "npx cypress run --browser electron"
   },
   </pre>
-  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Para poder listar as maneiras de executar. Uma vez instalado o ntl, basta digitar o ntl
-  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;no terminal e você poderá escolher como rodar o projeto.
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Para poder listar as maneiras de executar. Uma vez instalado o ntl, basta digitar o ntl no terminal e você poderá escolher como rodar o projeto.  
   
 </p>
 <hr>
 
 <h3 align="center"> 
-  Como rodar o projeto:
+  Como rodar o projeto
 </h3>
 
 <p align="left">
@@ -130,7 +125,7 @@
     <pre>ntl</pre>
     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Como dito acima, se digitar no terminal ntl irá habilitar se você vai rodar o projeto<br>
     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;via open ou via headless, as duas opções configuradas.<br>
-    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;via OBSERVAÇÃO: Por alguma limitação da ferramenta, o ntl não gera o relatório, sendo necessário para isso o comando abaixo
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;via OBSERVAÇÃO: Por alguma limitação da ferramenta, o ntl não gera o relatório, sendo necessário para isso o comando abaixo<br>
     <pre>npx cypress run</pre>
     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Roda o cypress via terminal.<br>
 </p>
@@ -157,4 +152,3 @@
   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Foi necessário acessar o objeto window para conseguir limpar. Elegante.<br>
 </p>
 
-<hr>
